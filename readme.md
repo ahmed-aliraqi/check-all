@@ -19,7 +19,7 @@ A simple tool used to handle check all and multi action forms.
     ```
 - CDN
     ```html
-    <script src="https://cdn.jsdelivr.net/npm/@ahmed-aliraqi/check-all"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@ahmed-aliraqi/check-all@1.0.4"></script>
     <script>
         CheckAll.onChange(function (el) {
             // Do something
