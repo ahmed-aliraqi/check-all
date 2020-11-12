@@ -12,11 +12,7 @@ A simple tool used to handle check all and multi action forms.
     // app.js
     ```javascript
     require('@ahmed-aliraqi/check-all');
-    ```
-    // or
-    ```javascript
-    import CheckAll from '@ahmed-aliraqi/check-all';
-    
+  
     CheckAll.onChange(function (el) {
         // Do something
     });
