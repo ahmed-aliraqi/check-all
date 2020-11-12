@@ -2,14 +2,33 @@
 
 A simple tool used to handle check all and multi action forms.
 
+![Check All](https://raw.githubusercontent.com/ahmed-aliraqi/check-all/master/screenshot/check-all.gif)
+
 ## Installation
 - NPM
     ```bash
     npm i @ahmed-aliraqi/check-all --save-dev
     ```
+    // app.js
+    ```javascript
+    require('@ahmed-aliraqi/check-all');
+    ```
+    // or
+    ```javascript
+    import CheckAll from '@ahmed-aliraqi/check-all';
+    
+    CheckAll.onChange(function (el) {
+        // Do something
+    });
+    ```
 - CDN
     ```html
     <script src="https://cdn.jsdelivr.net/npm/@ahmed-aliraqi/check-all"></script>
+    <script>
+        CheckAll.onChange(function (el) {
+            // Do something
+        });
+    </script>
     ```
 
 ## Usage
@@ -45,8 +64,7 @@ A simple tool used to handle check all and multi action forms.
 
 <script src="../dist/check-all.min.js"></script>
 <script>
-  CheckAll.init()
-    .onChange(function (el) {
+  CheckAll.onChange(function (el) {
       if (el.checked) {
         el.closest('tr').classList.add("checked");
       } else {

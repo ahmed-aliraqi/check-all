@@ -1,6 +1,6 @@
 {
   "name": "@ahmed-aliraqi/check-all",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A simple tool used to handle check all and multi action forms",
   "main": "dist/check-all.umd.js",
   "module": "dist/check-all.esm.js",

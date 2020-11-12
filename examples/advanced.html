@@ -54,8 +54,7 @@
 
 <script src="/check-all.min.js"></script>
 <script>
-  CheckAll.init()
-    .onChange(function (el) {
+  CheckAll.onChange(function (el) {
       if (el.checked) {
         el.closest('tr').classList.add("checked");
       } else {
