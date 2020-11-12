@@ -1,6 +1,6 @@
 # Check All Plugin
 
-A simple tool used to handle check all and multi action forms.
+A simple helper used to handle check all and multi action forms.
 
 ![Check All](https://raw.githubusercontent.com/ahmed-aliraqi/check-all/master/screenshot/check-all.gif)
 
