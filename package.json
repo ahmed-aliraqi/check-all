@@ -1,0 +1,31 @@
+{
+  "name": "@ahmed-aliraqi/check-all",
+  "version": "1.0.1",
+  "description": "A simple tool used to handle check all and multi action forms",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahmed-aliraqi/check-all.git"
+  },
+  "keywords": [
+    "check-all",
+    "checkbox",
+    "html",
+    "css",
+    "javascript",
+    "laravel",
+    "form"
+  ],
+  "author": "Ahmed Fathy <aliraqi.dev@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ahmed-aliraqi/check-all/issues"
+  },
+  "homepage": "https://github.com/ahmed-aliraqi/check-all#readme"
+}

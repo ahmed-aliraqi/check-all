@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Check All Plugin</title>
+</head>
+<body>
+
+<form action="?edit=true" id="edit-form">
+    <input type="hidden" name="type" value="edit">
+</form>
+<form action="?delete=true" id="delete-form">
+    <input type="hidden" name="type" value="delete">
+</form>
+
+<div>
+    <button disabled
+            form="edit-form"
+            data-checkbox=".item-checkbox"
+            data-form="edit-form">Edit Selected</button>
+
+    <button disabled
+            form="delete-form"
+            data-checkbox=".item-checkbox"
+            data-form="delete-form">Delete Selected</button>
+</div>
+<br>
+<table border="1" style="width: 300px">
+    <tr>
+        <th><input type="checkbox" data-children=".item-checkbox"></th>
+        <th>Name</th>
+    </tr>
+    <tr>
+        <th><input type="checkbox" name="items[]" value="1" class="item-checkbox"></th>
+        <td>Item 1</td>
+    </tr>
+    <tr>
+        <th><input type="checkbox" name="items[]" value="2" class="item-checkbox"></th>
+        <td>Item 2</td>
+    </tr>
+    <tr>
+        <th><input type="checkbox" name="items[]" value="3" class="item-checkbox"></th>
+        <td>Item 3</td>
+    </tr>
+</table>
+
+<script src="../index.js"></script>
+<script>
+    new CheckAll().init()
+</script>
+</body>
+</html>
