@@ -22,15 +22,15 @@
 </form>
 
 <div>
-    <button disabled
-            form="edit-form"
+    <button form="edit-form"
             data-checkbox=".item-checkbox"
-            data-form="edit-form">Edit Selected</button>
+            data-form="edit-form">Edit Selected
+    </button>
 
-    <button disabled
-            form="delete-form"
+    <button form="delete-form"
             data-checkbox=".item-checkbox"
-            data-form="delete-form">Delete Selected</button>
+            data-form="delete-form">Delete Selected
+    </button>
 </div>
 <br>
 <table border="1" style="width: 300px">
@@ -52,17 +52,16 @@
     </tr>
 </table>
 
-<script src="../index.js"></script>
+<script src="/check-all.min.js"></script>
 <script>
-    new CheckAll({
-      onchange(input) {
-        if (input.checked) {
-          input.closest('tr').classList.add("checked");
-        } else {
-          input.closest('tr').classList.remove("checked");
-        }
+  CheckAll.init()
+    .onChange(function (el) {
+      if (el.checked) {
+        el.closest('tr').classList.add("checked");
+      } else {
+        el.closest('tr').classList.remove("checked");
       }
-    }).init()
+    });
 </script>
 </body>
 </html>

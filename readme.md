@@ -15,13 +15,11 @@ A simple tool used to handle check all and multi action forms.
 ## Usage
 ```html
 <div>
-    <button disabled
-            form="edit-form"
+    <button form="edit-form"
             data-checkbox=".item-checkbox"
             data-form="edit-form">Edit Selected</button>
 
-    <button disabled
-            form="delete-form"
+    <button form="delete-form"
             data-checkbox=".item-checkbox"
             data-form="delete-form">Delete Selected</button>
 </div>
@@ -45,9 +43,16 @@ A simple tool used to handle check all and multi action forms.
     </tr>
 </table>
 
-<script src="../index.js"></script>
+<script src="../dist/check-all.min.js"></script>
 <script>
-    new CheckAll().init()
+  CheckAll.init()
+    .onChange(function (el) {
+      if (el.checked) {
+        el.closest('tr').classList.add("checked");
+      } else {
+        el.closest('tr').classList.remove("checked");
+      }
+    });
 </script>
 ```
 
