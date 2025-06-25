@@ -1,9 +1,10 @@
-(function (factory) {
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  factory();
-}((function () { 'use strict';
+  (global = global || self, global['check-all'] = factory());
+}(this, (function () { 'use strict';
 
-  var CheckAll = {
+  let CheckAll = {
     handleCheckAllChangeEvent(event) {
       const checkAll = event.target;
       const childrenSelector = checkAll.getAttribute('data-children');
@@ -120,6 +121,8 @@
     }
   };
 
-  window.CheckAll =  CheckAll.init();
+  window.CheckAll = CheckAll.init();
+
+  return CheckAll;
 
 })));

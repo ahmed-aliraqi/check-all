@@ -1,4 +1,4 @@
-export default {
+let CheckAll = {
   handleCheckAllChangeEvent(event) {
     const checkAll = event.target;
     const childrenSelector = checkAll.getAttribute('data-children');
@@ -114,3 +114,7 @@ export default {
     this.changed = callback;
   }
 }
+
+window.CheckAll = CheckAll.init();
+
+export default CheckAll;

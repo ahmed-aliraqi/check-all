@@ -3,7 +3,7 @@
 import commonjs from "rollup-plugin-commonjs";
 
 const config = {
-  input: "src/entry.js",
+  input: "src/index.js",
   output: {
     name: "check-all",
     extend: true
