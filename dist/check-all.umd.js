@@ -5,14 +5,31 @@
 
   var CheckAll = {
     handleCheckAllChangeEvent(event) {
-      document.querySelectorAll(
-        event.target.getAttribute('data-children')
-      )
-        .forEach(el => {
-          el.checked = event.target.checked;
+      const checkAll = event.target;
+      const childrenSelector = checkAll.getAttribute('data-children');
+      const children = document.querySelectorAll(childrenSelector);
+      children.forEach(el => {
+        el.checked = checkAll.checked;
+        el.dispatchEvent(new Event('change'));
+      });
+      // Set indeterminate to false when manually toggling
+      checkAll.indeterminate = false;
+    },
 
-          el.dispatchEvent(new Event('change'));
-        });
+    updateCheckAllIndeterminate(checkAll) {
+      const childrenSelector = checkAll.getAttribute('data-children');
+      const children = document.querySelectorAll(childrenSelector);
+      const checkedCount = Array.from(children).filter(el => el.checked).length;
+      if (checkedCount === 0) {
+        checkAll.checked = false;
+        checkAll.indeterminate = false;
+      } else if (checkedCount === children.length) {
+        checkAll.checked = true;
+        checkAll.indeterminate = false;
+      } else {
+        checkAll.checked = false;
+        checkAll.indeterminate = true;
+      }
     },
 
     handleActionTriggerEnable(button) {
@@ -45,49 +62,55 @@
         });
     },
     init() {
-      document.addEventListener("DOMContentLoaded", event => {
+      document.addEventListener("DOMContentLoaded", () => {
         this.checkAllElement = document.querySelectorAll('input[type=checkbox][data-children]');
         this.actionTrigger = document.querySelectorAll('[data-checkbox]');
         this.checkAllChildren = [];
-        if (this.checkAllElement.length) {
-          this.checkAllElement.forEach(checkAll => {
-            checkAll.addEventListener(
-              'change', this.handleCheckAllChangeEvent
-            );
+        this.initCheckAll();
+        this.initActionTriggers();
+      });
+      return this;
+    },
 
-            this.checkAllChildren = document.querySelectorAll(checkAll.getAttribute('data-children'));
-
-            if (this.checkAllChildren.length) {
-
-              this.checkAllChildren
-                .forEach(el => {
-                  el.addEventListener('change', event => {
-                      this.changed(event.target);
-                    }
-                  );
-                });
-            }
+    initCheckAll() {
+      if (!this.checkAllElement.length) return;
+      this.checkAllElement.forEach(checkAll => {
+        checkAll.addEventListener('change', event => {
+          // Always get the children for this checkAll instance
+          const children = document.querySelectorAll(checkAll.getAttribute('data-children'));
+          children.forEach(el => {
+            el.checked = checkAll.checked;
           });
-        }
-
-        if (this.actionTrigger.length) {
-          this.actionTrigger
-            .forEach(button => {
-              this.handleActionTriggerEnable(button);
-
-              button.addEventListener('click', event => {
-                document.querySelectorAll(
-                  button.getAttribute('data-checkbox')
-                )
-                  .forEach(input => {
-                    input.setAttribute('form', button.getAttribute('data-form'));
-                  });
-              });
+          children.forEach(el => {
+            el.dispatchEvent(new Event('change'));
+          });
+          checkAll.indeterminate = false;
+        });
+        // Always get the children for this checkAll instance
+        const children = document.querySelectorAll(checkAll.getAttribute('data-children'));
+        if (children.length) {
+          children.forEach(el => {
+            el.addEventListener('change', event => {
+              this.changed(event.target);
+              this.updateCheckAllIndeterminate(checkAll);
             });
+          });
+          this.updateCheckAllIndeterminate(checkAll);
         }
       });
+    },
 
-      return this;
+    initActionTriggers() {
+      if (!this.actionTrigger.length) return;
+      this.actionTrigger.forEach(button => {
+        this.handleActionTriggerEnable(button);
+        button.addEventListener('click', event => {
+          document.querySelectorAll(button.getAttribute('data-checkbox'))
+            .forEach(input => {
+              input.setAttribute('form', button.getAttribute('data-form'));
+            });
+        });
+      });
     },
     changed(input) {
       //
